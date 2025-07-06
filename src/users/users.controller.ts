@@ -14,7 +14,7 @@ export class UsersController {
     const createdUser = await this.usersUService.create(userParams);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { encryptedPassword, password, ...user } = createdUser;
+    const { encryptedPassword, ...user } = createdUser;
 
     return user;
   }

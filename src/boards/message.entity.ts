@@ -1,30 +1,21 @@
-import { Board } from 'src/boards/board.entity';
 import {
   Entity,
-  Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
+  Column,
+  ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import { Board } from './board.entity';
 
-@Entity()
-export class User {
+@Entity({ name: 'messages' })
+export class Message {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
-  username: string;
-
   @Column()
-  bio: string;
-
-  @Column({ unique: true, nullable: false })
-  email: string;
-
-  @Column({ default: true, name: 'encrypted_password' })
-  encryptedPassword: string;
+  content: string;
 
   @CreateDateColumn({ type: 'datetime', name: 'created_at' })
   createdAt: Date;
@@ -32,7 +23,7 @@ export class User {
   @UpdateDateColumn({ type: 'datetime', name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToOne(() => Board)
+  @ManyToOne(() => Board, (board) => board.messages)
   @JoinColumn({ name: 'board_id' })
   board: Board;
 }

@@ -9,7 +9,7 @@ import { Request } from 'express';
 import { jwtConstants } from 'src/sessions/constants';
 
 export type JwtPayload = {
-  id: number;
+  sub: number;
   email: string;
 };
 

@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { SessionsController } from './sessions/sessions.controller';
 import { SessionsService } from './sessions/sessions.service';
 import { SessionsModule } from './sessions/sessions.module';
+import { BoardsModule } from './boards/boards.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { SessionsModule } from './sessions/sessions.module';
     }),
     UsersModule,
     SessionsModule,
+    BoardsModule,
   ],
   controllers: [SessionsController],
   providers: [SessionsService],
