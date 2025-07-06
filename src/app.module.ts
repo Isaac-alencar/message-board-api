@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
@@ -12,6 +11,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true, // Automatically create tables (use with caution in production)
       logging: true, // Enable logging for debugging
     }),
+    UsersModule,
   ],
   controllers: [],
   providers: [],
