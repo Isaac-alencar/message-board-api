@@ -1,5 +1,5 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common';
-import { JwtPayload } from 'src/auth/auth.guard';
+import { JwtPayload } from 'src/sessions/sessions.guard';
 
 type AuthenticatedRequests = Request & { user?: JwtPayload };
 

@@ -3,7 +3,7 @@ import { CreateUserDTO } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { User } from './user.interface';
 import { GetUser } from './user.decorator';
-import { AuthGuard, JwtPayload } from 'src/auth/auth.guard';
+import { SessionsGuard, JwtPayload } from 'src/sessions/sessions.guard';
 
 @Controller('users')
 export class UsersController {
@@ -20,7 +20,7 @@ export class UsersController {
   }
 
   @Get()
-  @UseGuards(AuthGuard)
+  @UseGuards(SessionsGuard)
   getAll(@GetUser() user: JwtPayload) {
     return user;
   }
