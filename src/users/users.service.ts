@@ -11,6 +11,12 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
   ) {}
+
+  async findOne(email: string) {
+    const [user] = await this.usersRepository.find({ where: { email } });
+    return user;
+  }
+
   async create(userDTO: CreateUserDTO) {
     const { password } = userDTO;
     const salt = bcryptjs.genSaltSync(10);

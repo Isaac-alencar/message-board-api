@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SessionsController } from './sessions/sessions.controller';
+import { SessionsService } from './sessions/sessions.service';
+import { SessionsModule } from './sessions/sessions.module';
 
 @Module({
   imports: [
@@ -12,8 +15,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       logging: true, // Enable logging for debugging
     }),
     UsersModule,
+    SessionsModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [SessionsController],
+  providers: [SessionsService],
 })
 export class AppModule {}

@@ -1,7 +1,9 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { User } from './user.interface';
+import { GetUser } from './user.decorator';
+import { AuthGuard, JwtPayload } from 'src/auth/auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -14,6 +16,12 @@ export class UsersController {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { encryptedPassword, password, ...user } = createdUser;
 
+    return user;
+  }
+
+  @Get()
+  @UseGuards(AuthGuard)
+  getAll(@GetUser() user: JwtPayload) {
     return user;
   }
 }
